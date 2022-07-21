@@ -85,6 +85,10 @@ class Simplex:
 
     def find_basic(self):
 
+        """
+        Find 
+        """
+
         bases = []
 
         for index, column in enumerate(self.tableau[:-1, :-1].T):
@@ -108,8 +112,10 @@ class Simplex:
 
     def run_simplex_method(self):
 
+        tableau = self.tableau
+
         if self.solved == True:
-            return self.tableau
+            return tableau
 
         while True:
 
