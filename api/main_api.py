@@ -27,7 +27,8 @@ async def simplex_method(tableau: Tableau):
     tableau = np.array(tableau.tableau).astype(np.float64)
     simplex = Simplex(tableau)
     simplex.run_simplex_method()
+    solved_tableau = simplex.solved_tableau.tolist()
 
     return {
-        "tableaus": f"{simplex.basic_points}"
+        "tableaus": solved_tableau
     }

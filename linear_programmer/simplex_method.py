@@ -123,7 +123,7 @@ class Simplex:
 
             pivot = self.select_pivots()
             if pivot == None:
-                self.solved_tableau = tableau
+                self.solved_tableau = np.round(tableau)
                 self.solved = True
                 return tableau
 
