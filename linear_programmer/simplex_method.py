@@ -107,6 +107,8 @@ class Simplex:
         for index, point in enumerate(basic_points):
             basic_points[index].append(self.tableau[point[0], -1])
 
+        basic_points = np.round(basic_points)
+
         self.basic_points.append(basic_points)
         return basic_points
 
@@ -123,7 +125,7 @@ class Simplex:
 
             pivot = self.select_pivots()
             if pivot == None:
-                self.solved_tableau = tableau
+                self.solved_tableau = np.round(tableau)
                 self.solved = True
                 return tableau
 
@@ -141,3 +143,5 @@ if __name__ == "__main__":
     print(new_tableau.run_simplex_method())
     print(new_tableau.solved)
     print(new_tableau.basic_points)
+
+    print(f'{[type(point) for point in new_tableau.basic_points]}')

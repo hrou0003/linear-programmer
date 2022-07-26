@@ -29,5 +29,6 @@ async def simplex_method(tableau: Tableau):
     simplex.run_simplex_method()
 
     return {
-        "tableaus": f"{simplex.basic_points}"
+        "basic_points": [point.tolist() for point in simplex.basic_points],
+        "solved_tableau": simplex.solved_tableau.tolist()
     }
