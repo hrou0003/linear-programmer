@@ -17,6 +17,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Sidebar from '../navigation/Sidebar';
 import NavDrawer from '../navigation/NavDrawer';
+import Plotter from './Plotter';
 
 const drawerWidth = 240;
 
@@ -33,7 +34,8 @@ export default function Main() {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`}, height: '100vh' }}
       >
-        <Typography color={'white'}>Testing</Typography>
+        <Plotter />
+
       </Box>
     </Box>
   );

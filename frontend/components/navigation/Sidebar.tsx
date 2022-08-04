@@ -12,25 +12,41 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
+import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
+import InfoIcon from '@mui/icons-material/Info';
 
 const Sidebar = () => {
 
   return (
       <Box sx={{marginTop: '30vh'}}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <SettingsInputComponentIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Creator" />
             </ListItemButton>
           </ListItem>
-        ))}
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ScatterPlotIcon />
+              </ListItemIcon>
+              <ListItemText primary="Plotter" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary="Info" />
+            </ListItemButton>
+          </ListItem>
       </List>
       </Box>
   )

@@ -2,13 +2,8 @@ import { Drawer } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import Sidebar from "./Sidebar";
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 
 const drawerWidth = 240;
 
