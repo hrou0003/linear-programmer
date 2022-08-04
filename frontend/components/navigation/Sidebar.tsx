@@ -15,13 +15,20 @@ import MailIcon from '@mui/icons-material/Mail';
 import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
 import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 import InfoIcon from '@mui/icons-material/Info';
+import { MainContext } from "../sections/Main";
 
 const Sidebar = () => {
+
+  const { currentView, setCurrentView } = React.useContext(MainContext);
+
+  const activeStyle = {
+    backgroundColor: 'gray'
+  }
 
   return (
       <Box sx={{marginTop: '30vh'}}>
       <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => {setCurrentView && setCurrentView('creator')}} sx={currentView === "creator" ? activeStyle : null}>
             <ListItemButton>
               <ListItemIcon>
                 <SettingsInputComponentIcon />
@@ -30,7 +37,7 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => {setCurrentView && setCurrentView('plotter')}} sx={currentView === "plotter" ? activeStyle : null}>
             <ListItemButton>
               <ListItemIcon>
                 <ScatterPlotIcon />
@@ -39,7 +46,7 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => {setCurrentView && setCurrentView('info')}} sx={currentView === "info" ? activeStyle : null}>
             <ListItemButton>
               <ListItemIcon>
                 <InfoIcon />

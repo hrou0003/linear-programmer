@@ -2,41 +2,46 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Sidebar from '../navigation/Sidebar';
 import NavDrawer from '../navigation/NavDrawer';
 import Plotter from './Plotter';
+import Creator from './Creator';
+import Info from './Info';
 
 const drawerWidth = 240;
 
+type MainContextType = {
+  currentView?: string;
+  setCurrentView?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const MainContext = React.createContext<MainContextType>({})
+
 export default function Main() {
+
+  const [currentView, setCurrentView] = React.useState('plotter')
 
 
   return (
-    <Box sx={{ display: 'flex', background: 'white' }}>
-      <CssBaseline />
+    <MainContext.Provider value={{currentView, setCurrentView}}>
+      <Box sx={{ display: 'flex', background: 'white' }}>
+        <CssBaseline />
 
-      <NavDrawer />
+        <NavDrawer />
 
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`}, height: '100vh' }}
-      >
-        <Plotter />
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, height: '100vh' }}
+        >
+          {
+            {
+              'plotter': <Plotter />,
+              'creator': <Creator />,
+              'info': <Info />
+            }[currentView]
+          }
 
+        </Box>
       </Box>
-    </Box>
+    </MainContext.Provider>
   );
 }

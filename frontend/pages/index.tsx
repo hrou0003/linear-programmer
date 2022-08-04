@@ -5,7 +5,6 @@ import Tabbed from '../components/sections/Tabbed'
 
 const Home: NextPage = () => {
 
-
   return (
       <div>
         <Main />
