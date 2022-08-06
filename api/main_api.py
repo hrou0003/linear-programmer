@@ -30,5 +30,6 @@ async def simplex_method(tableau: Tableau):
     solved_tableau = simplex.solved_tableau.tolist()
 
     return {
-        "tableaus": solved_tableau
+        "basic_points": [point.tolist() for point in simplex.basic_points],
+        "solved_tableau": simplex.solved_tableau.tolist()
     }
