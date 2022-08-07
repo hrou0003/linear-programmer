@@ -3,8 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import NavDrawer from '../navigation/NavDrawer';
-import Plotter from './Plotter';
-import Creator from './Creator';
+import Plotter from '../plotter/Plotter';
+import Creator from '../creator/Creator';
 import Info from './Info';
 
 const drawerWidth = 240;

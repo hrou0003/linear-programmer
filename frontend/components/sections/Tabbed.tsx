@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Creator from "./Creator";
+import Creator from "../creator/Creator";
 import Info from "./Info";
-import Plotter from "./Plotter";
+import Plotter from "../plotter/Plotter";
 
 
 const Wrapper = styled.div`
