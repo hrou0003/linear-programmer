@@ -1,4 +1,4 @@
-import { Drawer } from "@mui/material";
+import { Drawer, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import Sidebar from "./Sidebar";
@@ -36,7 +36,7 @@ const NavDrawer = (props: Props) => {
             >
                 <MenuIcon />
             </IconButton>
-            <Box
+            <Paper
                 component="nav"
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
@@ -67,7 +67,7 @@ const NavDrawer = (props: Props) => {
                 >
                     {<Sidebar />}
                 </Drawer>
-            </Box>
+            </Paper>
         </>
     )
 }

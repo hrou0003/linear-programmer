@@ -23,14 +23,14 @@ export default function Main() {
 
   return (
     <MainContext.Provider value={{currentView, setCurrentView}}>
-      <Box sx={{ display: 'flex', background: 'white' }}>
+      <Box sx={{ display: 'flex', background: 'white', color: 'black' }}>
         <CssBaseline />
 
         <NavDrawer />
 
         <Box
           component="main"
-          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, height: '100vh' }}
+          sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, height: '100vh'}}
         >
           {
             {
