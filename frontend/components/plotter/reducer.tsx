@@ -22,10 +22,12 @@ export const datasetsReducer = (state: DatasetsType[], action: Action) => {
 
   switch (type) {
     case ActionKind.Add:
-      return {
+      return [
         ...state,
         payload,
-      };
+      ];
+    default:
+        return state
   }
 };
 
