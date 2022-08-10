@@ -14,11 +14,11 @@ import { Box } from "@mui/system";
 import Inputs from "./Inputs";
 import { Grid } from "@mui/material";
 import { DatasetsType, reducer, initialState, addDefault } from "./datasetReducerContext";
+import { DatasetsProvider } from "./context";
 
 
 const Plotter = () => {
 
-  const [datasets, dispatchDatasets] = useReducer(reducer, initialState)
 
   const functionPlugin = {
     id: 'test',
@@ -107,6 +107,7 @@ const Plotter = () => {
   ];
 
   return (
+    <DatasetsProvider>
     <Box
       sx={{
         margin: "auto",
@@ -126,6 +127,7 @@ const Plotter = () => {
         </Grid>
       </Grid>
     </Box>
+    </DatasetsProvider>
   );
 };
 

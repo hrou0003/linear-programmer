@@ -1,15 +1,14 @@
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CustomInput } from "../sharedComponents/CustomInput";
-import { DatasetsType } from "../plotter/Plotter"
+import { DatasetsContext } from "./context";
 
-type Props = {
-    datasets: DatasetsType[];
-    setDatasets: React.Dispatch<React.SetStateAction<DatasetsType[]>>;
-}
+function Inputs() {
 
-function Inputs({datasets, setDatasets}: Props) {
+  const [gradient, setGradient] = useState('')
+  const [intercept, setIntercept] = useState('')
 
+  const { state, dispatch } = useContext(DatasetsContext)
 
   return (
     <Box sx={{display: 'inline-block', padding: 2}}>

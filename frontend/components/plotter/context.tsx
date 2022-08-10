@@ -3,19 +3,19 @@ import { Action, ActionKind, datasetsReducer, DatasetsType, initialState } from 
 
 const DatasetsContext = createContext<{
     state: DatasetsType[];
-    dispatch: Dispatch<ActionKind>;
+    dispatch: Dispatch<Action>;
 }>({
     state: initialState,
     dispatch: () => null,
 })
 
-const mainReducer = ( datasets: DatasetsType[], action: Action) => ({
-    datasets: datasetsReducer(datasets, action)
-});
+interface Props {
+    children: React.ReactNode
+}
 
-const DatasetsProvider: React.FC = ({ children }) => {
+const DatasetsProvider = ({ children }: Props) => {
     
-    const [state, dispatch] = useReducer(mainReducer, initialState);
+    const [state, dispatch] = useReducer(datasetsReducer, initialState);
 
     return (
         <DatasetsContext.Provider value={{state, dispatch}}>
