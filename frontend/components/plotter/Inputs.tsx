@@ -1,14 +1,18 @@
-import { Paper, Stack, Typography } from "@mui/material";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { CustomInput } from "../sharedComponents/CustomInput";
+import { DatasetsType } from "../plotter/Plotter"
 
-function Inputs() {
+type Props = {
+    datasets: DatasetsType[];
+    setDatasets: React.Dispatch<React.SetStateAction<DatasetsType[]>>;
+}
 
-    const [gradient, setGradient] = useState("0");
-    const [intercept, setIntercept] = useState("0");
+function Inputs({datasets, setDatasets}: Props) {
+
 
   return (
-    <Paper sx={{display: 'inline-block', padding: 2}}>
+    <Box sx={{display: 'inline-block', padding: 2}}>
       <Stack
         direction="row"
         alignItems="center"
@@ -30,7 +34,7 @@ function Inputs() {
           onChange={(e) => setIntercept(e.target.value)}
         />
       </Stack>
-    </Paper>
+    </Box>
   );
 }
 
