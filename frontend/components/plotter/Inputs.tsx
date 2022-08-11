@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { CustomInput } from "../sharedComponents/CustomInput";
 import { DatasetsContext } from "./context";
 import { nanoid } from 'nanoid';
-import { ActionKind, DatasetsType } from "./reducer";
+import { ActionKind } from "./reducer";
 
 
 const id = nanoid();
@@ -15,23 +15,32 @@ function Inputs() {
 
   const { state, dispatch } = useContext(DatasetsContext)
 
+  enum Param {
+    Gradient = 'gradient',
+    Intercept = 'intercept'
+  }
 
-  const updateGradient = (gradient: string) => {
-    setGradient(gradient)
+  const updateParam = (whichParam: Param, param: string) => {
 
-    let payload: DatasetsType = {
+    switch(whichParam) {
+      case Param.Gradient:
+        setGradient(param)
+      case Param.Intercept:
+        setIntercept(param)
+    }
+
+    let payload = {
       label: id,
-      function: function (x: number) {
-        return x
+      function: function(x: number) {
+        return x*parseInt(gradient)+parseInt(intercept)
       },
       data: [],
-      borderColor: "green",
+      borderColor: "rgba(75, 192, 192, 1)",
       fill: false,
     }
 
-    console.log(state)
-
     dispatch({ type: ActionKind.Update, payload: payload})
+
   }
 
   return (
@@ -47,14 +56,14 @@ function Inputs() {
           id="rows-input"
           type="number"
           value={gradient}
-          onChange={(e) => updateGradient(e.target.value)}
+          onChange={(e) => updateParam(Param.Gradient, e.target.value)}
         />
         <Typography variant="body1">+</Typography>
         <CustomInput
           id="rows-input"
           type="number"
           value={intercept}
-          onChange={(e) => setIntercept(e.target.value)}
+          onChange={(e) => updateParam(Param.Intercept, e.target.value)}
         />
       </Stack>
     </Box>
