@@ -26,10 +26,20 @@ export const datasetsReducer = (state: DatasetsType[], action: Action) => {
         ...state,
         payload,
       ];
+    case ActionKind.Update:
+        return updateDataset(state, payload)
     default:
         return state
   }
 };
+
+const updateDataset = (state: DatasetsType[], dataset: DatasetsType) => {
+   let filtered = state.filter(item => (item.label !== dataset.label)) 
+   return [
+    ...filtered,
+    dataset
+   ]
+}
 
 export const initialState: DatasetsType[] = [
   {
