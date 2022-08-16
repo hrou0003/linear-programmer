@@ -1,11 +1,4 @@
-
-export type DatasetsType = {
-  label: string;
-  function?: (x: number) => number;
-  data: never[];
-  borderColor: string;
-  fill: boolean;
-};
+import { Data, PlotData } from "plotly.js";
 
 export enum ActionKind {
   Add = "add-line",
@@ -14,51 +7,41 @@ export enum ActionKind {
 
 export type Action = {
   type: ActionKind;
-  payload: DatasetsType;
+  payload: Partial<PlotData>;
 };
 
-export const datasetsReducer = (state: DatasetsType[], action: Action) => {
+export const datasetsReducer = (state: Partial<PlotData>[], action: Action) => {
   const { type, payload } = action;
 
   switch (type) {
     case ActionKind.Add:
-      return [
-        ...state,
-        payload,
-      ];
+      return [...state, payload];
     case ActionKind.Update:
-        return updateDataset(state, payload)
+      return updateDataset(state, payload);
     default:
-        return state
+      return state;
   }
 };
 
-const updateDataset = (state: DatasetsType[], dataset: DatasetsType) => {
-   let filtered = state.filter(item => (item.label !== dataset.label)) 
-   return [
-    ...filtered,
-    dataset
-   ]
-}
+const updateDataset = (
+  state: Partial<PlotData>[],
+  dataset: Partial<PlotData>
+) => {
+  let filtered = state.filter((item) => {
+    console.log(`${item.ids} and ${dataset.ids}`)
+    return item.ids[0] !== dataset.ids[0]
+  });
+  console.log(filtered)
+  console.log(dataset)
+  return [...filtered, dataset];
+};
 
-export const initialState: DatasetsType[] = [
+export const initialState: Partial<PlotData>[] = [
   {
-    label: "f(x) = x", // Name it as you want
-    function: function (x: number) {
-      return x;
-    },
-    data: [],
-    borderColor: "blue",
-    fill: false,
+    ids: ["1"],
+    name: "f(x) = x",
+    x: [1, 2, 3, 4],
+    y: [1, 2, 3, 4],
+    type: "scatter",
   },
 ];
-
-export const addDefault: Action = {
-  type: ActionKind.Add,
-  payload: {
-    label: "1",
-    data: [],
-    borderColor: "blue",
-    fill: false,
-  },
-};

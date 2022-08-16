@@ -2,13 +2,13 @@ import React, { useReducer, useState } from "react";
 import { Box } from "@mui/system";
 import Inputs from "./Inputs";
 import { Grid } from "@mui/material";
-import { DatasetsType, reducer, initialState, addDefault } from "./datasetReducerContext";
 import { DatasetsProvider } from "./context";
 import Chart from "./Chart";
+import dynamic from "next/dynamic";
 
+const ChartDynamic = dynamic(() => import('./Chart'), { ssr: false })
 
 const Plotter = () => {
-
 
 
   return (
@@ -27,7 +27,7 @@ const Plotter = () => {
         </Grid>
         <Grid item xs={9}>
           <Box width="90%" height="90vh">
-            <Chart />
+            <ChartDynamic />
           </Box>
         </Grid>
       </Grid>
