@@ -19,15 +19,24 @@ const validExpression = (expression: string) => {
   }
 };
 
-function Input() {
+type Props = {
+  setRecentInput: React.Dispatch<React.SetStateAction<string>>;
+  index: number;
+}
+
+function Input({ setRecentInput, index }: Props) {
   const id = useRef(nanoid())
   const [expression, setExpression] = useState("");
   const [valid, setValid] = useState(false);
 
   const { state, dispatch } = useContext(DatasetsContext);
 
+
   const updateExpression = (expression: string) => {
     setExpression(expression);
+    if (id.current === state[state.length-1].ids[0]) {
+      setRecentInput(expression)
+    }
 
     if (validExpression(expression)) {
       setValid(true);
@@ -42,6 +51,7 @@ function Input() {
         name: `f(x) = ${expression}`,
         x: xValues,
         y: yValues,
+        fill: "tozeroy",
         type: "scatter"
       };
 

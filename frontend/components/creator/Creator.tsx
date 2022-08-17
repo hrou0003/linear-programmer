@@ -2,7 +2,9 @@ import { InputUnstyled } from "@mui/base";
 import { useState } from "react";
 import { styled } from "@mui/system";
 import { CustomInput } from "../sharedComponents/CustomInput";
-import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import { MatrixInput } from "../sharedComponents/MatrixInput";
+import { nanoid } from "nanoid";
 
 const Creator = () => {
   // const handlerFunction = (event) = {
@@ -21,29 +23,6 @@ const Creator = () => {
     [4, 5, 6],
     [7, 8, 9],
   ]);
-
-  //   const updateRows = (newRows: string) => {
-  //     let numberOfNewRows = parseInt(newRows) - parseInt(rows);
-  //     console.log(`current rows: ${rows}, new rows: ${newRows}, difference: ${numberOfNewRows}`)
-
-  //     setMatrix(oldMatrix => {
-  //         let newMatrix = [...oldMatrix];
-  //         if (numberOfNewRows > 0) {
-  //             for (let i = 0; i < numberOfNewRows; i++) {
-  //                 newMatrix.push(Array(parseInt(columns)).fill(0))
-  //                 console.log(newMatrix)
-  //             }
-  //         } else {
-  //             for (let i = 0; i < -numberOfNewRows; i++) {
-  //                 newMatrix.pop()
-  //             }
-  //         }
-  //         console.log(newMatrix)
-
-  //         return newMatrix
-  //     })
-  //     setRows(newRows)
-  //   };
 
   const createMatrix = (rows: number, columns: number) => {
     // let newMatrix = Array(rows).fill(structuredClone(Array(columns).fill(0)));
@@ -67,6 +46,25 @@ const Creator = () => {
     oldMatrix[rowIndex][colIndex] = value;
     setMatrix(oldMatrix);
   };
+
+  const submitMatrix = async () => {
+    const endpoint = '/api/simplex_method'
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: nanoid(),
+        tableau: matrix
+      })
+    })
+
+    return response.json()
+  }
 
   const style = {
     fontSize: "0.875rem",
@@ -100,6 +98,9 @@ const Creator = () => {
                 onChange={(e) => updateDimensions({ newCols: e.target.value })}
               />
             </Stack>
+            <Stack direction="row" alignItems="center" justifyContent="space-around" marginTop="5px" gap={2}>
+              <Button onClick={() => submitMatrix()}>Submit Matrix</Button>
+            </Stack>
             </Paper>
           </Grid>
           <Grid item lg={9} justifyItems="center">
@@ -110,7 +111,6 @@ const Creator = () => {
                     {row.map((column, colIndex) => (
                       <Grid item key={`${rowIndex}-${colIndex}`}>
                         <CustomInput
-                          type="number"
                           value={matrix[rowIndex][colIndex]}
                           onChange={(e) =>
                             updateMatrix(
@@ -119,7 +119,7 @@ const Creator = () => {
                               parseInt(e.target.value)
                             )
                           }
-                          endAdornment={false}
+                          type='number'
                         />
                       </Grid>
                     ))}
