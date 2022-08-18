@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DatasetsContext } from "./context";
+import { DatasetsContext } from "../../contexts/plotterContexts/context";
 import Plotly from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 const Plot = createPlotlyComponent(Plotly);

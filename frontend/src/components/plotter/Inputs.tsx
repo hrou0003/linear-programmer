@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { DatasetsContext } from "./context";
+import { DatasetsContext } from "../../contexts/plotterContexts/context";
 import Input from "./Input";
 
 function Inputs() {

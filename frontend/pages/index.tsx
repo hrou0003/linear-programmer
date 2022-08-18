@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import Main from "../components/sections/Main"
-import NavDrawer from '../components/navigation/Sidebar'
-import Tabbed from '../components/sections/Tabbed'
+import Main from "../src/components/sections/Main"
+import NavDrawer from '../src/components/navigation/Sidebar'
+import Tabbed from '../src/components/sections/Tabbed'
 
 const Home: NextPage = () => {
 

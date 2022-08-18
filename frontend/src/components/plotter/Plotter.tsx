@@ -2,7 +2,7 @@ import React, { useReducer, useState } from "react";
 import { Box } from "@mui/system";
 import Inputs from "./Inputs";
 import { Grid } from "@mui/material";
-import { DatasetsProvider } from "./context";
+import { DatasetsProvider } from "../../contexts/plotterContexts/context";
 import Chart from "./Chart";
 import dynamic from "next/dynamic";
 

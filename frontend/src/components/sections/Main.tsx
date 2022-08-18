@@ -9,9 +9,12 @@ import Info from './Info';
 
 const drawerWidth = 240;
 
+
 type MainContextType = {
   currentView?: string;
   setCurrentView?: React.Dispatch<React.SetStateAction<string>>;
+  solvedPivots: number[][];
+  solvedMatrix: number[][];
 }
 
 export const MainContext = React.createContext<MainContextType>({})

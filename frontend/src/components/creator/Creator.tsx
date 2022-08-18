@@ -48,7 +48,7 @@ const Creator = () => {
   };
 
   const submitMatrix = async () => {
-    const endpoint = '/api/simplex_method'
+    const endpoint = 'http://localhost:8000/simplex_method'
 
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -63,7 +63,11 @@ const Creator = () => {
       })
     })
 
-    return response.json()
+    let responseJSON = response.json()
+
+    console.log(responseJSON)
+
+    return responseJSON
   }
 
   const style = {

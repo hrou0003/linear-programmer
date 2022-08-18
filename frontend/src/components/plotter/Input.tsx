@@ -1,9 +1,9 @@
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import React, { useContext, useRef, useState } from "react";
 import { CustomInput } from "../sharedComponents/CustomInput";
-import { DatasetsContext } from "./context";
+import { DatasetsContext } from "../../contexts/plotterContexts/context";
 import { nanoid } from "nanoid";
-import { ActionKind } from "./reducer";
+import { ActionKind } from "../../contexts/plotterContexts/reducer";
 import math, { evaluate, compile, range } from "mathjs";
 import { PlotData } from "plotly.js";
 
