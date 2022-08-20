@@ -6,6 +6,7 @@ import NavDrawer from '../navigation/NavDrawer';
 import Plotter from '../plotter/Plotter';
 import Creator from '../creator/Creator';
 import Info from './Info';
+import { SolutionContext, SolutionProvider } from '../../contexts/mainContexts/context';
 
 const drawerWidth = 240;
 
@@ -13,8 +14,6 @@ const drawerWidth = 240;
 type MainContextType = {
   currentView?: string;
   setCurrentView?: React.Dispatch<React.SetStateAction<string>>;
-  solvedPivots: number[][];
-  solvedMatrix: number[][];
 }
 
 export const MainContext = React.createContext<MainContextType>({})
@@ -26,6 +25,8 @@ export default function Main() {
 
   return (
     <MainContext.Provider value={{currentView, setCurrentView}}>
+      <SolutionProvider>
+
       <Box sx={{ display: 'flex', background: 'white', color: 'black' }}>
         <CssBaseline />
 
@@ -45,6 +46,7 @@ export default function Main() {
 
         </Box>
       </Box>
+      </SolutionProvider>
     </MainContext.Provider>
   );
 }
