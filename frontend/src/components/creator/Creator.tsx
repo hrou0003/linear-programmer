@@ -150,9 +150,9 @@ const Creator = () => {
               </Grid>
             ))}
           </Grid>
+        <DynamicDisplayMatrix />
         </Grid>
       </Grid>
-      <DynamicDisplayMatrix />
     </Box>
   );
 };
