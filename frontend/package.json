@@ -19,6 +19,8 @@
     "chartjs-plugin-zoom": "^1.2.1",
     "faker": "^6.6.6",
     "hammerjs": "^2.0.8",
+    "mathjax-full": "^3.2.2",
+    "mathjax-react": "^2.0.1",
     "mathjs": "^11.0.1",
     "nanoid": "^4.0.0",
     "next": "12.2.3",
