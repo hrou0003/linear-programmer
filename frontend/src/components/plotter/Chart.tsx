@@ -1,10 +1,23 @@
 import React, { useContext } from "react";
 import { DatasetsContext } from "../../contexts/plotterContexts/context";
-import Plotly from "plotly.js";
+import Plotly, { PlotData } from "plotly.js";
 import createPlotlyComponent from "react-plotly.js/factory";
 import { Box } from "@mui/material";
 import { SolutionType } from "../../contexts/mainContexts/context";
+import { compile } from "mathjs";
+import { ActionKind } from "../../contexts/plotterContexts/reducer";
 const Plot = createPlotlyComponent(Plotly);
+
+const validExpression = (expression: string) => {
+  try {
+    let expr = compile(expression);
+    let scope = { x: 1 };
+    expr.evaluate(scope);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
 
 type Props = {
   solution: SolutionType;
@@ -14,13 +27,8 @@ function Chart({ solution }: Props) {
   const { state, dispatch } = useContext(DatasetsContext);
 
   const updateExpression = (expression: string) => {
-    setExpression(expression);
-    if (id.current === state[state.length-1].ids[0]) {
-      setRecentInput(expression)
-    }
 
     if (validExpression(expression)) {
-      setValid(true);
 
       let expr = compile(expression);
 
@@ -38,7 +46,7 @@ function Chart({ solution }: Props) {
 
       dispatch({ type: ActionKind.Update, payload: payload });
     } else {
-      setValid(false);
+      console.log('invalid expression') 
     }
   };
 
