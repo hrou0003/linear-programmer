@@ -1,7 +1,7 @@
 import { Data, PlotData } from "plotly.js";
 import React, { createContext, Dispatch, useReducer, useState } from "react"
 
-type SolutionType = {
+export type SolutionType = {
     pivots: number[][];
     matrix: number[][];
 }
