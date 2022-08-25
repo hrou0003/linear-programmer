@@ -1,15 +1,17 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { Box } from "@mui/system";
 import Inputs from "./Inputs";
 import { Grid } from "@mui/material";
 import { DatasetsProvider } from "../../contexts/plotterContexts/context";
 import Chart from "./Chart";
 import dynamic from "next/dynamic";
+import { SolutionContext } from "../../contexts/mainContexts/context";
 
 const ChartDynamic = dynamic(() => import('./Chart'), { ssr: false })
 
 const Plotter = () => {
 
+  const { solution } = useContext(SolutionContext)
 
   return (
     <DatasetsProvider>
