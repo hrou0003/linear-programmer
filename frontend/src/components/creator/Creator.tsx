@@ -80,12 +80,15 @@ const Creator = () => {
   return (
     <Box
       sx={{
-        padding: "10px",
+        margin: "auto",
+        padding: "5px",
+        marginLeft: "3rem",
+        height: "100%",
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item lg={3}>
-          <Paper sx={{ padding: 2, width: "content" }}>
+      <Grid container spacing={2} height="90vh">
+        <Grid item lg={3} margin="auto">
+          <Paper sx={{ padding: 2, minWidth: "content" }}>
             <Stack
               direction="row"
               alignItems="center"
@@ -126,31 +129,36 @@ const Creator = () => {
             </Stack>
           </Paper>
         </Grid>
-        <Grid item lg={9} justifyItems="center">
-          <Grid container spacing={2} sx={{ paddingTop: "10px" }}>
-            {matrix.map((row, rowIndex) => (
-              <Grid key={rowIndex} item xs={12}>
-                <Grid container spacing={2}>
-                  {row.map((column, colIndex) => (
-                    <Grid item key={`${rowIndex}-${colIndex}`}>
-                      <CustomInput
-                        value={matrix[rowIndex][colIndex]}
-                        onChange={(e) =>
-                          updateMatrix(
-                            rowIndex,
-                            colIndex,
-                            parseInt(e.target.value)
-                          )
-                        }
-                        type="number"
-                      />
+        <Grid item lg={7} margin="auto" display="flex" justifyContent="center">
+          <Box>
+
+              <Grid container spacing={2} sx={{ paddingTop: "10px", justifyContent: "spread" }}>
+                {matrix.map((row, rowIndex) => (
+                  <Grid key={rowIndex} item xs={12}>
+                    <Grid container spacing={2}>
+                      {row.map((column, colIndex) => (
+                        <Grid item key={`${rowIndex}-${colIndex}`}>
+                          <CustomInput
+                            value={matrix[rowIndex][colIndex]}
+                            onChange={(e) =>
+                              updateMatrix(
+                                rowIndex,
+                                colIndex,
+                                parseInt(e.target.value)
+                              )
+                            }
+                            type="number"
+                          />
+                        </Grid>
+                      ))}
                     </Grid>
-                  ))}
-                </Grid>
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        <DynamicDisplayMatrix />
+              <Grid item lg={3}>
+              <DynamicDisplayMatrix />
+              </Grid>
+          </Box>
         </Grid>
       </Grid>
     </Box>
